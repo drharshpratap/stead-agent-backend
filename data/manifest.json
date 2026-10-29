@@ -1,0 +1,194 @@
+{
+  "dataset_name": "Neosh Synthetic Demo Knowledge Base",
+  "version": "1.0",
+  "created_for": "Stead Agent RAG tool-calling proof of concept",
+  "synthetic_only": true,
+  "warning": "All policies, SKUs, order records, inventory quantities and compliance placeholders are fictional. Not actual Neosh facts.",
+  "product_families": [
+    {
+      "id": "NEO-BOOK-001",
+      "name": "Mandala Drawing Book",
+      "variants": [
+        {
+          "name": "A4 Paperback",
+          "sku": "MB-A4-PB"
+        },
+        {
+          "name": "A5 Paperback",
+          "sku": "MB-A5-PB"
+        },
+        {
+          "name": "Large Print Edition",
+          "sku": "MB-LP"
+        }
+      ]
+    },
+    {
+      "id": "NEO-BOOK-002",
+      "name": "Creative Activity Book",
+      "variants": [
+        {
+          "name": "Starter Edition",
+          "sku": "CAB-START"
+        },
+        {
+          "name": "Standard Edition",
+          "sku": "CAB-STD"
+        },
+        {
+          "name": "Gift Edition",
+          "sku": "CAB-GIFT"
+        }
+      ]
+    },
+    {
+      "id": "NEO-BOOK-003",
+      "name": "Storytelling and Illustration Book",
+      "variants": [
+        {
+          "name": "Paperback",
+          "sku": "SIB-PB"
+        },
+        {
+          "name": "Hardcover",
+          "sku": "SIB-HC"
+        },
+        {
+          "name": "Classroom Pack of 5",
+          "sku": "SIB-CP5"
+        }
+      ]
+    },
+    {
+      "id": "NEO-BOTTLE-001",
+      "name": "Polished Copper Bottle",
+      "variants": [
+        {
+          "name": "750 ml",
+          "sku": "PCB-750"
+        },
+        {
+          "name": "1 litre",
+          "sku": "PCB-1000"
+        },
+        {
+          "name": "Gift Box",
+          "sku": "PCB-GIFT"
+        }
+      ]
+    },
+    {
+      "id": "NEO-BOTTLE-002",
+      "name": "Hammered Copper Bottle",
+      "variants": [
+        {
+          "name": "750 ml",
+          "sku": "HCB-750"
+        },
+        {
+          "name": "1 litre",
+          "sku": "HCB-1000"
+        },
+        {
+          "name": "Gift Box",
+          "sku": "HCB-GIFT"
+        }
+      ]
+    },
+    {
+      "id": "NEO-TOY-001",
+      "name": "Children's Cycle",
+      "variants": [
+        {
+          "name": "12-inch wheel",
+          "sku": "CC-12"
+        },
+        {
+          "name": "14-inch wheel",
+          "sku": "CC-14"
+        },
+        {
+          "name": "16-inch wheel",
+          "sku": "CC-16"
+        }
+      ]
+    },
+    {
+      "id": "NEO-TOY-002",
+      "name": "Wooden Shape Sorter",
+      "variants": [
+        {
+          "name": "Natural Finish",
+          "sku": "WSS-NAT"
+        },
+        {
+          "name": "Colour Set",
+          "sku": "WSS-COL"
+        },
+        {
+          "name": "Classroom Set",
+          "sku": "WSS-CLS"
+        }
+      ]
+    },
+    {
+      "id": "NEO-HOME-001",
+      "name": "Decorative Table Tree",
+      "variants": [
+        {
+          "name": "Prototype",
+          "sku": "DTT-PROT"
+        }
+      ]
+    },
+    {
+      "id": "NEO-CRAFT-001",
+      "name": "Reusable Art Mat",
+      "variants": [
+        {
+          "name": "Small",
+          "sku": "RAM-S"
+        },
+        {
+          "name": "Medium",
+          "sku": "RAM-M"
+        },
+        {
+          "name": "Large",
+          "sku": "RAM-L"
+        }
+      ]
+    },
+    {
+      "id": "NEO-BAG-001",
+      "name": "Kids' Activity Backpack",
+      "variants": [
+        {
+          "name": "Small",
+          "sku": "KAB-S"
+        },
+        {
+          "name": "Medium",
+          "sku": "KAB-M"
+        },
+        {
+          "name": "Blue Edition",
+          "sku": "KAB-BLU"
+        }
+      ]
+    }
+  ],
+  "documents": [
+    "00_company_profile.md",
+    "01_product_catalogue.md",
+    "02_customer_policies.md",
+    "03_safety_and_handling.md",
+    "04_compliance_register.md",
+    "05_inventory_snapshots.md",
+    "06_sample_orders.md",
+    "07_faq_and_abstention.md",
+    "08_rag_test_questions.md",
+    "09_expanded_test_records.md"
+  ],
+  "recommended_abstention_phrase": "I couldn't find verified information in the available Neosh demo records."
+}
