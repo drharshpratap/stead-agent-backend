@@ -46,30 +46,74 @@ class VoiceAssistant(Agent):
             "search tool for Neosh product questions. Answer only "
             "from retrieved evidence and abstain when information "
             "is missing. Speak naturally and keep answers concise."
-            "When the user asks to show bottle on the console, "
-            "call agent_action_print_blue. "
+            "When the user asks to show or hide an interface element, "
+            "call agent_action_set_ui_visibility. Use target='bottle' for the "
+            "bottle dialog, or a screen target such as 'product-gallery', "
+            "'product-detail', 'orders', 'cart', 'image-gallery', 'terms', "
+            "or 'display'. Set visible=true to show and false to hide. "
         )
 
         super().__init__(instructions=instructions)
 
+    
     @function_tool()
-    async def agent_action_print_blue(
+    async def agent_action_set_ui_visibility(
         self,
         context: RunContext,
-        ) -> str:
-        """Print Blue boxes to the console when the user
-        explicitly asks the assistant to demonstrate the Print Blue."""
+        target: str,
+        visible: bool,
+    ) -> str:
+        """Show or hide an allowlisted frontend UI element.
+
+        target may be 'bottle', 'display', 'product-gallery', 'image-gallery',
+        'product-detail', 'orders', 'cart', or 'terms'.
+        Set visible=true to show and false to hide.
+        """
+
+        allowed_targets = {
+            "bottle",
+            "display",
+            "product-gallery",
+            "image-gallery",
+            "product-detail",
+            "orders",
+            "cart",
+            "terms",
+        }
+        if target not in allowed_targets:
+            return f"Unsupported interface target: {target}"
 
         room = context.session.room_io.room
 
-        await room.local_participant.publish_data(
-            b"show_blue",
-            reliable=True,
-            topic="ui_action",
-        )
+        # For this prototype, use the connected browser participant.
+        participants = list(room.remote_participants.values())
 
-        print("PRINT BLUE: publish completed")
-        return "Print Blue was printed successfully."
+        if not participants:
+            return "Unable to update the interface: no frontend participant is connected."
+
+        destination_identity = participants[0].identity
+
+        try:
+            response = await room.local_participant.perform_rpc(
+                destination_identity=destination_identity,
+                method="updateUIVisibility",
+                payload=json.dumps({"target": target, "visible": visible}),
+                response_timeout=5,
+            )
+
+            print(f"Tried calling updateUIVisibility for {target}")
+
+            result = json.loads(response)
+
+            if not result.get("success"):
+                return f"The visibility update failed for {target}."
+
+            return f"{target} is now {'visible' if visible else 'hidden'}."
+
+        except Exception as exc:
+            logger.exception("Failed to execute UI visibility RPC")
+            return f"Unable to update {target}: {exc}"
+
     
     @function_tool()
     async def search_knowledge_base(
